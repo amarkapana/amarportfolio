@@ -399,52 +399,35 @@ function initProjectFilter() {
 function initContactForm() {
     const form = document.getElementById('contact-form');
     const formStatus = document.querySelector('.form-status');
-    
+
     if (!form) return;
-    
+
+    // Initialize EmailJS
+    emailjs.init('lndDbEYccEH2AaRBG'); // Replace with your actual public key
+
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        
+
         // Show loading state
         formStatus.innerHTML = '<div class="form-status__loading">Sending message...</div>';
-        
-        // Get form data
-        const formData = new FormData(this);
-        const formDataObj = {};
-        formData.forEach((value, key) => {
-            formDataObj[key] = value;
-        });
-        
-        // Demo form submission - in real life, you'd send this to a server
-        // Using setTimeout to simulate a network request
-        setTimeout(() => {
-            // Success response
-            formStatus.innerHTML = '<div class="form-status__success">Message sent successfully! I\'ll get back to you soon.</div>';
-            form.reset();
-            
-            // Clear success message after a few seconds
-            setTimeout(() => {
-                formStatus.innerHTML = '';
-            }, 5000);
-        }, 1500);
-        
-        // In a real implementation, you'd have something like:
-        /*
-        fetch('your-form-endpoint', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            formStatus.innerHTML = '<div class="form-status__success">Message sent successfully!</div>';
-            form.reset();
-        })
-        .catch(error => {
-            formStatus.innerHTML = '<div class="form-status__error">There was an error sending your message. Please try again.</div>';
-        });
-        */
+
+        // Send form using EmailJS
+        emailjs.sendForm('service_6a6mgva', 'template_zeo8n9n', this)
+            .then(function(response) {
+                formStatus.innerHTML = '<div class="form-status__success">Message sent successfully! I\'ll get back to you soon.</div>';
+                form.reset();
+
+                // Clear success message after a few seconds
+                setTimeout(() => {
+                    formStatus.innerHTML = '';
+                }, 5000);
+            }, function(error) {
+                formStatus.innerHTML = '<div class="form-status__error">There was an error sending your message. Please try again.</div>';
+                console.error('EmailJS Error:', error);
+            });
     });
 }
+
 
 // =============================================
 // Page Animations
