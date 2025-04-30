@@ -412,7 +412,7 @@ function initContactForm() {
         formStatus.innerHTML = '<div class="form-status__loading">Sending message...</div>';
 
         // Send form using EmailJS
-        emailjs.sendForm('service_6a6mgva', 'template_zeo8n9n', this)
+        emailjs.sendForm('service_6a6mgva', 'template_zeo8n9n', form)
             .then(function(response) {
                 formStatus.innerHTML = '<div class="form-status__success">Message sent successfully! I\'ll get back to you soon.</div>';
                 form.reset();
