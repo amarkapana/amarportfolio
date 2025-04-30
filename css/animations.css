@@ -1,0 +1,445 @@
+/* 
+=================================
+  Animations CSS
+=================================
+*/
+
+/* 
+  This file contains animations and transitions for the portfolio
+*/
+
+/* =================================
+  Keyframes Animations
+================================= */
+
+/* Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fade Up */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade Down */
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade Left */
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Fade Right */
+@keyframes fadeRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale In */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Rubber Band */
+@keyframes rubberBand {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+/* Scroll Arrow Animation */
+@keyframes scrollArrow {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(108, 99, 255, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(108, 99, 255, 0);
+  }
+}
+
+/* =================================
+  Animation Classes
+================================= */
+
+/* Base Animation Class */
+.animate {
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Animation Delays */
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-3 {
+  animation-delay: 0.3s;
+}
+
+.delay-4 {
+  animation-delay: 0.4s;
+}
+
+.delay-5 {
+  animation-delay: 0.5s;
+}
+
+/* Animation Types */
+.fade-in {
+  animation-name: fadeIn;
+}
+
+.fade-up {
+  animation-name: fadeUp;
+}
+
+.fade-down {
+  animation-name: fadeDown;
+}
+
+.fade-left {
+  animation-name: fadeLeft;
+}
+
+.fade-right {
+  animation-name: fadeRight;
+}
+
+.scale-in {
+  animation-name: scaleIn;
+}
+
+.rubber-band {
+  animation-name: rubberBand;
+}
+
+/* =================================
+  Element-Specific Animations
+================================= */
+
+/* Preloader */
+.preloader__text span {
+  display: block;
+  transform: translateY(100%);
+}
+
+/* Hero Scroll Indicator */
+.hero__scroll-indicator .scroll-arrow span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-left: 1px solid var(--text-primary);
+  border-bottom: 1px solid var(--text-primary);
+  transform: rotate(-45deg);
+  animation: scrollArrow 2s infinite;
+  opacity: 0;
+}
+
+.hero__scroll-indicator .scroll-arrow span:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+.hero__scroll-indicator .scroll-arrow span:nth-of-type(2) {
+  top: 16px;
+  animation-delay: 0.15s;
+}
+
+.hero__scroll-indicator .scroll-arrow span:nth-of-type(3) {
+  top: 32px;
+  animation-delay: 0.3s;
+}
+
+/* Hero Marquee */
+.hero__marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.hero__marquee span {
+  display: inline-block;
+  padding-right: 50px;
+  animation: marquee 15s linear infinite;
+}
+
+/* Project Hover Animation */
+.project__inner {
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.project__inner:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.project__image img {
+  transition: transform var(--transition-normal);
+}
+
+.project__inner:hover .project__image img {
+  transform: scale(1.05);
+}
+
+/* Button Hover Animation */
+.btn-primary:hover {
+  box-shadow: 0 4px 20px rgba(108, 99, 255, 0.4);
+}
+
+.btn-outline:hover {
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Social Icons Animation */
+.social-icon {
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.social-icon:hover {
+  color: var(--primary-color);
+  transform: translateY(-5px);
+}
+
+/* Make sure default cursor is visible */
+html, body, * {
+  cursor: default;
+}
+
+a, button, input[type="button"], input[type="submit"], .btn, [role="button"] {
+  cursor: pointer;
+}
+
+input[type="text"], input[type="email"], input[type="password"], textarea, select {
+  cursor: text;
+}
+
+/* Custom cursor section removed to keep normal cursor */
+
+/* Form Status Animations */
+.form-status__loading {
+  position: relative;
+  padding-left: 24px;
+  color: var(--text-secondary);
+  font-size: 1.4rem;
+  margin-top: 1rem;
+}
+
+.form-status__loading:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--primary-color);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.form-status__success {
+  padding: 1rem;
+  background-color: rgba(16, 185, 129, 0.1);
+  border-left: 3px solid var(--success);
+  color: var(--success);
+  font-size: 1.4rem;
+  margin-top: 1rem;
+}
+
+.form-status__error {
+  padding: 1rem;
+  background-color: rgba(239, 68, 68, 0.1);
+  border-left: 3px solid var(--error);
+  color: var(--error);
+  font-size: 1.4rem;
+  margin-top: 1rem;
+}
+
+@keyframes spin {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+/* Navbar Animation */
+.navbar {
+  transition: background-color var(--transition-normal), padding var(--transition-normal);
+}
+
+.navbar.scrolled {
+  background-color: var(--darker-bg);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  padding: 1rem 0;
+}
+
+/* Mobile Menu Animation */
+.navbar__toggle {
+  position: relative;
+  width: 30px;
+  height: 20px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.navbar__toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-primary);
+  transition: transform var(--transition-normal), opacity var(--transition-normal);
+}
+
+.navbar__toggle.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.navbar__toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar__toggle.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+  .navbar__toggle {
+    display: flex;
+  }
+  
+  .navbar__links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background-color: var(--darker-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: right var(--transition-normal);
+    z-index: 5;
+  }
+  
+  .navbar__links.active {
+    right: 0;
+  }
+  
+  .navbar__links a {
+    margin: 1rem 0;
+    font-size: 2rem;
+  }
+}
+
+/* Page Transition Animation */
+.transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--darker-bg);
+  z-index: 9999;
+  transform: translateY(100%);
+}
